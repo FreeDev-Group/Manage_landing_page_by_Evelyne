@@ -216,6 +216,34 @@
                 menuIcon.src = 'img/icon-close.svg';
             }
         })
+              //Form Validation
+        const emailInput = document.getElementById("update");
+        const footerBtn = document.querySelector(".footer2-btn");
+        footerBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            const emailValue = emailInput.value.trim();
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailPattern.test(emailValue)) {
+                // Span element to display error message
+                let errorSpan = document.querySelector(".error-message");
+                if (!errorSpan) {
+                    errorSpan = document.createElement("span");
+                    errorSpan.classList.add("error-message");
+                    errorSpan.style.color = "red";
+                    emailInput.parentNode.appendChild(errorSpan);
+                }
+                errorSpan.textContent = "Please enter a valid email address.";
+                emailInput.value = "";
+              // Remove error message after 3 seconds
+                setTimeout(() => {
+                    errorSpan.textContent = "";
+                }, 1500);
+            } else {
+                alert("Thank you for subscribing!");
+                emailInput.value = "";
+            }
+        })
      </script>
 </body>
 </html>
